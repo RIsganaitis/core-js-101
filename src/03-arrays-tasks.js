@@ -111,8 +111,15 @@ function getArrayOfStrings(arr) {
  *    [ 1, 2, 3, 4, 5, 'false' ]         => [ 1, 2, 3, 4, 5, 'false' ]
  *    [ false, 0, NaN, '', undefined ]   => [ ]
  */
-function removeFalsyValues(/* arr */) {
-  throw new Error('Not implemented');
+function removeFalsyValues(arr) {
+  const arr1 = [];
+  arr.filter((x) => {
+    if (x) {
+      arr1.push(x);
+    }
+    return x;
+  });
+  return arr1;
 }
 
 /**
@@ -380,8 +387,15 @@ function getItemsSum(arr) {
  *  [ -1, 'false', null, 0 ] => 2
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
-function getFalsyValuesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getFalsyValuesCount(arr) {
+  let count = 0;
+  arr.filter((x) => {
+    if (!x) {
+      count += 1;
+    }
+    return x;
+  });
+  return count;
 }
 
 /**
@@ -444,8 +458,28 @@ function toStringList(arr) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  *    ]
  */
-function sortCitiesArray(/* arr */) {
-  throw new Error('Not implemented');
+function sortCitiesArray(arr) {
+  const sorted = arr.sort((a, b) => {
+    if (a.country < b.country) {
+      return -1;
+    }
+    if (a.country > b.country) {
+      return 1;
+    }
+    return arr;
+  });
+  const sorted1 = sorted.sort((a, b) => {
+    if (a.country === b.country) {
+      if (a.city < b.city) {
+        return -1;
+      }
+      if (a.city > b.city) {
+        return 1;
+      }
+    }
+    return sorted;
+  });
+  return sorted1;
 }
 
 /**
@@ -611,8 +645,22 @@ function getElementByIndexes(/* arr, indexes */) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  const newArr = [];
+  const arrLen = arr.length;
+  const len = ((arrLen - (arrLen % 2)) / 2);
+  const head = arr.slice(0, len);
+  const tail = arr.slice(-len);
+  const mid = arr[len];
+  if (arrLen % 2 === 0) {
+    newArr.push(tail, head);
+  } else {
+    newArr.push(tail, mid, head);
+  }
+  if (arrLen < 2) {
+    return arr;
+  }
+  return newArr.flat();
 }
 
 
